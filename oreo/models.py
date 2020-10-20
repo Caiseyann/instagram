@@ -38,3 +38,25 @@ class Profile(models.Model):
 class Likes(models.Model):
 	post = models.IntegerField()
 	liker = models.CharField(max_length=20)
+
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=30, blank=True)
+    poster = models.ForeignKey(User,on_delete=models.CASCADE, blank=True)
+    imagecommented = models.ForeignKey(Post,on_delete=models.CASCADE, related_name='comments',null=True)
+
+    def save_comment(self):
+        self.save()
+
+    @classmethod
+    def get_all_comments(cls):
+        comments = Comment.objects.all()
+        return comments
+
+    @classmethod
+    def get_comments(cls, id):
+        comments = Comment.objects.filter(post_id=id).all()
+        return comments
+
+    def __str__(self):
+        return self.comment
