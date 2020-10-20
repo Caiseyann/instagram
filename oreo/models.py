@@ -34,3 +34,7 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ['user']
+
+class Likes(models.Model):
+	post = models.IntegerField()
+	liker = models.CharField(max_length=20)
