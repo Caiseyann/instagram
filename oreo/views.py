@@ -30,7 +30,7 @@ def add_comment(request,pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.imagecommented = image
+            comment.commented = image
             comment.poster = current_user
             comment.save()
             return redirect('homepage')

@@ -43,7 +43,7 @@ class Likes(models.Model):
 class Comment(models.Model):
     comment = models.CharField(max_length=30, blank=True)
     poster = models.ForeignKey(User,on_delete=models.CASCADE, blank=True)
-    imagecommented = models.ForeignKey(Post,on_delete=models.CASCADE, related_name='comments',null=True)
+    commented = models.ForeignKey(Post,on_delete=models.CASCADE, related_name='comments',null=True)
 
     def save_comment(self):
         self.save()
