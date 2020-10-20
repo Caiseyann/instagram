@@ -1,0 +1,2 @@
+Hello {{name}}
+Thank you for signing up to PumpkinOreo!! Start sharing your photos and make sure to tell a friend to tell a friend
