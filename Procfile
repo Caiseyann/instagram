@@ -1,1 +1,1 @@
-web: gunicorn pumpkin.wsgi --log-file -
+web: gunicorn pumpkin.wsgi
