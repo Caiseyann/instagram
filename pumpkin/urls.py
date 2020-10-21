@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from pixel_app import views
+from oreo import views
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
