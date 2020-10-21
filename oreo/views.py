@@ -12,8 +12,6 @@ from django.shortcuts import render,redirect
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
-
-
 def follow(request,operation,id):
     user=User.objects.get(id=id)
     if operation=='follow':
@@ -30,7 +28,7 @@ def add_comment(request,pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.commented = image
+            comment.imagecommented = image
             comment.poster = current_user
             comment.save()
             return redirect('homepage')

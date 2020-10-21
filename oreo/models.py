@@ -5,7 +5,7 @@ import datetime as dt
 
 # Create your models here.
 class Profile(models.Model):
-    bio = HTMLFields()
+    bio = HTMLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     avatar = models.ImageField(upload_to='images/', blank=True)
 
@@ -38,31 +38,6 @@ class Profile(models.Model):
 class Likes(models.Model):
 	post = models.IntegerField()
 	liker = models.CharField(max_length=20)
-
-
-class Comment(models.Model):
-    comment = models.CharField(max_length=30, blank=True)
-    poster = models.ForeignKey(User,on_delete=models.CASCADE, blank=True)
-    commented = models.ForeignKey(Post,on_delete=models.CASCADE, related_name='comments',null=True)
-
-    def save_comment(self):
-        self.save()
-
-    @classmethod
-    def get_all_comments(cls):
-        comments = Comment.objects.all()
-        return comments
-
-    @classmethod
-    def get_comments(cls, id):
-        comments = Comment.objects.filter(post_id=id).all()
-        return comments
-
-    def __str__(self):
-        return self.comment
-
-
-
 
 class Post(models.Model):
     image = models.ImageField(upload_to='images/', blank=True)
@@ -101,6 +76,27 @@ class Post(models.Model):
     def get_user_images(cls, profile_id):
         images=Post.objects.filter(profile_id=id)
 
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=30, blank=True)
+    poster = models.ForeignKey(User,on_delete=models.CASCADE, blank=True)
+    imagecommented = models.ForeignKey(Post,on_delete=models.CASCADE, related_name='comments',null=True)
+
+    def save_comment(self):
+        self.save()
+
+    @classmethod
+    def get_all_comments(cls):
+        comments = Comment.objects.all()
+        return comments
+
+    @classmethod
+    def get_comments(cls, id):
+        comments = Comment.objects.filter(post_id=id).all()
+        return comments
+
+    def __str__(self):
+        return self.comment
 
 class Follow(models.Model):
     users = models.ManyToManyField(User, related_name='follow')

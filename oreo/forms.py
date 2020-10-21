@@ -16,7 +16,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        exclude = ['poster', 'commented']
+        exclude = ['poster', 'imagecommented']
 
 class UploadForm(forms.ModelForm):
     class Meta:
